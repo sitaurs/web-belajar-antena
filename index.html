@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <title>Praktikum Antena — Belajar & Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ================= HOME PAGE ================= -->
+  <section id="home" class="screen active">
+    <div class="hero">
+      <div class="hero-badge">📡 Latihan Lisan Interaktif</div>
+      <h1>Praktikum Antena</h1>
+      <p>Pilih modul untuk mulai belajar materi dan menguji pemahaman lewat quiz. Dirancang untuk dibuka di HP.</p>
+    </div>
+    <div class="module-grid" id="moduleGrid"></div>
+    <footer class="foot">Praktikum Antena • Belajar &amp; Quiz</footer>
+  </section>
+
+  <!-- ================= MODULE PAGE ================= -->
+  <section id="module" class="screen">
+    <header class="topbar">
+      <button class="icon-btn" id="homeBtn" title="Kembali ke Home">🏠</button>
+      <div class="topbar-title">
+        <h2 id="moduleTitle">Judul Modul</h2>
+        <p class="sub" id="moduleSub">Subjudul</p>
+      </div>
+      <nav class="modes">
+        <button class="mode-btn active" data-mode="belajar">📖 Belajar</button>
+        <button class="mode-btn" data-mode="quiz">📝 Quiz</button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- MODE BELAJAR -->
+      <div id="belajar" class="view active">
+        <button class="toc-toggle" id="tocToggle">📑 Daftar Isi</button>
+        <div class="belajar-wrap">
+          <aside class="toc" id="toc"></aside>
+          <div class="content" id="materiContent"></div>
+        </div>
+      </div>
+
+      <!-- MODE QUIZ -->
+      <div id="quiz" class="view">
+        <div id="quizIntro" class="quiz-intro">
+          <h2>Mode Quiz</h2>
+          <p id="quizIntroDesc">Uji pemahamanmu. Pilih jawaban yang benar untuk setiap pertanyaan.</p>
+          <div class="quiz-options">
+            <label for="quizCategory">Pilih kategori soal:</label>
+            <select id="quizCategory"></select>
+          </div>
+          <button id="startQuiz" class="primary-btn">Mulai Quiz</button>
+        </div>
+
+        <div id="quizArea" class="quiz-area hidden">
+          <div class="quiz-progress">
+            <div class="progress-bar"><div id="progressFill"></div></div>
+            <span id="progressText"></span>
+          </div>
+          <div id="questionCard" class="question-card"></div>
+          <div class="quiz-nav">
+            <button id="nextBtn" class="primary-btn" disabled>Lanjut</button>
+          </div>
+        </div>
+
+        <div id="quizResult" class="quiz-result hidden"></div>
+      </div>
+    </main>
+
+    <!-- Navigasi antar modul -->
+    <div class="module-nav" id="moduleNav"></div>
+    <footer class="foot">Praktikum Antena • Belajar &amp; Quiz</footer>
+  </section>
+
+  <!-- Overlay feedback animasi benar/salah -->
+  <div id="fxOverlay" class="fx-overlay"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
