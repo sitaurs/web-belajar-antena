@@ -923,6 +923,162 @@ const QUIZ_BAB3 = [
     explain: "Percobaan pemancar melihat matching/SWR, percobaan penerima melihat pengaruh polarisasi/jarak/probe/Yagi, dan diagram polar melihat ARAH penerimaan antena terhadap sudut. Ketiganya saling melengkapi." }
 ];
 
+
+
+/* ---------- MATERI PERCOBAAN 2: GAIN, POLA RADIASI & ISOLASI SILANG ---------- */
+const MATERI_PERCOBAAN2 = [
+  {
+    id: "pembuka-p2",
+    title: "Percobaan 2: Gain, Pola Radiasi & Isolasi Silang",
+    html: `
+      <p class="quote">"Pada Percobaan 2, kami membandingkan antena referensi dipole dengan antena Yagi untuk menghitung gain. Setelah itu kami mengukur pola radiasi dengan memutar antena penerima tiap 10 derajat. Dari data, Yagi menunjukkan pola directional. Elemen-elemen Yagi juga terbukti berpengaruh karena saat dilepas, level penerimaan menurun."</p>
+      <h3>Tujuan Praktikum</h3>
+      <ul>
+        <li>Mengukur <strong>gain antena</strong>.</li>
+        <li>Melihat pengaruh elemen-elemen Yagi terhadap gain/penerimaan.</li>
+        <li>Mengukur <strong>pola radiasi</strong> horizontal dan vertikal.</li>
+        <li>Menentukan HPBW, sidelobe attenuation, front-to-back ratio (FBR).</li>
+        <li>Memahami <strong>isolasi silang</strong> (cross isolation).</li>
+      </ul>
+    `
+  },
+  {
+    id: "setup-p2",
+    title: "Setup Alat & Parameter Utama",
+    html: `
+      <ul>
+        <li><strong>Pemancar:</strong> Signal Generator</li>
+        <li><strong>Penerima:</strong> Measuring Receiver</li>
+        <li><strong>Frekuensi kerja utama:</strong> <code>202 MHz</code> (VHF, untuk pola radiasi)</li>
+        <li><strong>RF output Signal Generator:</strong> <code>80 dBµV</code></li>
+        <li><strong>Antena Referensi:</strong> Antena dipole (1/2 λ)</li>
+        <li><strong>Antena Under Test (yang diuji):</strong> Antena Yagi-Uda 9 elemen</li>
+      </ul>
+      <p>Untuk pola radiasi, antena penerima dipasang pada rotator dan diputar dari <code>0° sampai 360°</code> tiap <code>10°</code>.</p>
+    `
+  },
+  {
+    id: "tabel1-gain",
+    title: "Tabel 1: Pengukuran Gain Antena",
+    html: `
+      <p>Gain dihitung dengan membandingkan level antena yang diuji dengan antena referensi.</p>
+      <ul>
+        <li><strong>E1:</strong> level sinyal saat penerima menggunakan antena dipole referensi.</li>
+        <li><strong>E2:</strong> level sinyal saat penerima menggunakan antena Yagi yang diuji.</li>
+      </ul>
+      <p>Rumus Gain:</p>
+      <pre><code>G(dB) = E2 - E1 + 2,15 dB</code></pre>
+      <div class="qa"><div class="q">Kenapa ditambah 2,15 dB?</div><div class="a">Karena antena referensi (dipole 1/2 λ) memiliki gain <code>2,15 dB</code> terhadap antena isotropis. Penambahan ini membuat hasil akhirnya menjadi gain absolut terhadap isotropis (dBi).</div></div>
+      <p class="quote"><strong>Hasil:</strong> E2 lebih besar dari E1. Gain Yagi lebih besar dari dipole karena Yagi memusatkan energi ke depan (lebih terarah).</p>
+    `
+  },
+  {
+    id: "tabel23-radiasi",
+    title: "Tabel 2 & 3: Pola Radiasi Yagi",
+    html: `
+      <p>Tabel 2 berisi pola radiasi Yagi polarisasi <strong>Horizontal</strong>. Tabel 3 untuk <strong>Vertikal</strong>.</p>
+      <p><strong>Normalisasi Data:</strong> Data diubah agar level maksimum menjadi acuan <code>0 dB</code>. Sudut lain nilainya dikurangi level maksimum (menjadi negatif).</p>
+      <pre><code>Normalisasi = Level sudut - Level maksimum</code></pre>
+      <div class="qa"><div class="q">Apa jenis pola Yagi?</div><div class="a"><strong>Directional</strong>. Pada 0° sinyal maksimum (0 dB), sedangkan di arah belakang (180°) nilainya turun sangat besar (misal -17,8 dB). Penerimaan ke depan jauh lebih kuat dibanding ke belakang.</div></div>
+    `
+  },
+  {
+    id: "tabel4-elemen",
+    title: "Tabel 4: Pengaruh Elemen Yagi",
+    html: `
+      <p>Pada tahap ini, elemen-elemen pasif (director) pada Yagi dilepas satu per satu.</p>
+      <div class="qa"><div class="q">Hasil & Kesimpulan:</div><div class="a">Level sinyal penerimaan <strong>menurun</strong>. Ini membuktikan bahwa susunan elemen Yagi (reflector & director) sangat berpengaruh terhadap penguatan dan pembentukan arah antena. Semakin lengkap elemennya, gain semakin besar.</div></div>
+    `
+  },
+  {
+    id: "tabel56-folded",
+    title: "Tabel 5 & 6: Pola Radiasi Folded Dipole",
+    html: `
+      <p>Percobaan ini melihat efek penambahan reflektor pada antena Folded Dipole:</p>
+      <ul>
+        <li><strong>Tabel 5 (Tanpa Reflektor):</strong> Pola radiasinya lebih <strong>menyebar</strong> (bidirectional/cenderung omnidirectional relatif terhadap Yagi).</li>
+        <li><strong>Tabel 6 (Dengan Reflektor):</strong> Polanya menjadi lebih <strong>terarah (directional)</strong>.</li>
+      </ul>
+      <p class="quote"><strong>Kesimpulan:</strong> Reflektor berfungsi menekan radiasi ke arah belakang dan mengarahkannya ke depan, sehingga antena menjadi directional.</p>
+    `
+  },
+  {
+    id: "parameter-antena",
+    title: "Parameter Penting (Tabel 7)",
+    html: `
+      <div class="qa"><div class="q">HPBW (Half Power Beam Width)</div><div class="a">Lebar sudut main lobe pada titik setengah daya (turun <code>-3 dB</code> dari maksimum). Semakin kecil HPBW, beam makin sempit, antena makin terarah.</div></div>
+      <div class="qa"><div class="q">Front-to-Back Ratio (FBR)</div><div class="a">Perbandingan sinyal arah depan (0°) dengan arah belakang (180°).<br><code>FBR = Level 0° - Level 180°</code> (dalam dB). Semakin besar FBR, semakin baik antena menolak sinyal bocoran dari belakang.</div></div>
+      <div class="qa"><div class="q">Sidelobe Attenuation</div><div class="a">Peredaman side lobe (pancaran samping) terhadap main lobe.<br><code>Atten = Level Main Lobe - Level Side Lobe</code>. Semakin besar nilainya, pola antena makin bersih.</div></div>
+    `
+  },
+  {
+    id: "isolasi-silang",
+    title: "Isolasi Silang (Cross Isolation)",
+    html: `
+      <p>Isolasi silang adalah perbedaan level antara penerimaan pada polarisasi utama dan polarisasi silang. Menunjukkan kemampuan antena menolak sinyal yang polarisasinya "salah".</p>
+      <pre><code>Cross isolation (EcI) = E1 - E2</code></pre>
+      <p>Contoh: <code>E1</code> = level polarisasi horizontal (52,6 dBµV), <code>E2</code> = level polarisasi vertikal (50,2 dBµV). Selisihnya 2,4 dB adalah nilai cross isolation.</p>
+      <p class="quote">Semakin besar selisihnya, semakin baik antena memisahkan polarisasi horizontal dan vertikal.</p>
+    `
+  },
+  {
+    id: "teori-kunci",
+    title: "Teori Kunci (Buat Jaga-jaga)",
+    html: `
+      <div class="qa"><div class="q">dBµV vs dBµV/m</div><div class="a"><code>dBµV</code> = level tegangan listrik yang masuk ke receiver. <code>dBµV/m</code> = kuat medan listrik (field strength) aktual di udara.</div></div>
+      <div class="qa"><div class="q">Antena Isotropis</div><div class="a">Antena ideal (hanya ada di teori) yang memancarkan energi persis sama rata ke segala arah membentuk bola. Dipakai sebagai referensi penguatan <code>0 dBi</code>.</div></div>
+      <div class="qa"><div class="q">Panjang Dipole 202 MHz</div><div class="a">Panjang gelombang (λ) = c/f = 300 / 202 ≈ 1,485 m. Dipole (1/2 λ) panjangnya sekitar 74,25 cm. Karena ada dua lengan batang, tiap sisi ≈ 37 cm.</div></div>
+      <div class="qa"><div class="q">Mengapa pola praktik tidak ideal?</div><div class="a">Gelombang memantul di ruangan (tembok/meja), ada benda logam, ketidakpresisian sudut pemutar (rotator), dan toleransi alat ukur analog/digital.</div></div>
+    `
+  },
+  {
+    id: "jawaban-aman-p2",
+    title: "Jawaban Panjang Aman",
+    html: `
+      <p class="quote">"Percobaan 2 mengukur gain, pola radiasi, dan isolasi silang. Gain dihitung dengan membandingkan antena Yagi terhadap dipole referensi menggunakan rumus G = E2 - E1 + 2,15 dB. Pola radiasi diukur dengan memutar antena penerima dari 0° sampai 360° tiap 10°. Dari hasilnya, Yagi cenderung directional karena sinyal kuat di arah depan dan lemah di belakang. Saat elemen Yagi dilepas, level sinyal menurun. Folded dipole tanpa reflektor lebih menyebar, sedangkan dengan reflektor menjadi lebih terarah."</p>
+      <h3>Jawaban Inti Paling Penting</h3>
+      <p class="quote">"Saya paham bahwa gain dan pola radiasi antena dipengaruhi oleh bentuk dan elemen antena. Yagi lebih directional karena memiliki reflector dan director, sedangkan folded dipole tanpa reflektor lebih menyebar. Saat elemen Yagi dilepas, level sinyal turun, membuktikan bahwa elemen-elemen tersebut sangat berperan dalam penguatan antena."</p>
+    `
+  }
+];
+
+/* ---------- QUIZ PERCOBAAN 2: GAIN, POLA RADIASI & ISOLASI SILANG ---------- */
+const QUIZ_PERCOBAAN2 = [
+  // DASAR PERCOBAAN 2
+  { cat: "dasar2", q: "Judul Percobaan 2 adalah...", options: ["Matching Antena Pemancar", "Pengukuran Gain, Pola Radiasi, dan Isolasi Silang", "Distribusi Tegangan Antena", "Pengaruh Probe dan Yagi"], answer: 1, explain: "Judul Percobaan 2 adalah Pengukuran Gain, Pola Radiasi, dan Isolasi Silang. Fokusnya sangat luas mencakup karakteristik pengarahan (pola) dan penguatan (gain)." },
+  { cat: "dasar2", q: "Alat yang berfungsi sebagai pemancar pada Percobaan 2 adalah...", options: ["Measuring Receiver", "Antena Rotator", "Signal Generator", "Dipole"], answer: 2, explain: "Signal Generator digunakan sebagai sumber sinyal (pemancar) dengan level output yang diatur (misal 80 dBµV)." },
+  { cat: "dasar2", q: "Alat yang berfungsi membaca level sinyal yang diterima adalah...", options: ["SWR Meter", "Signal Generator", "Measuring Receiver", "Multimeter"], answer: 2, explain: "Measuring Receiver digunakan sebagai alat penerima untuk membaca level tegangan sinyal (dalam satuan dBµV) yang ditangkap oleh antena." },
+  { cat: "dasar2", q: "Berapa frekuensi kerja utama yang digunakan pada pengukuran pola radiasi Percobaan 2?", options: ["434 MHz", "202 MHz", "144 MHz", "2.4 GHz"], answer: 1, explain: "Frekuensi yang digunakan adalah 202 MHz (masuk pita VHF). Ini berbeda dengan modul 1 yang menggunakan 434 MHz (UHF)." },
+  { cat: "dasar2", q: "Antena yang digunakan sebagai referensi (pembanding) untuk mengukur gain adalah...", options: ["Yagi-Uda 9 elemen", "Antena Isotropis", "Antena Parabola", "Antena Dipole (1/2 λ)"], answer: 3, explain: "Antena dipole setengah gelombang digunakan sebagai antena referensi karena karakteristik gain-nya sudah diketahui dengan pasti (sekitar 2,15 dBi)." },
+  { cat: "dasar2", q: "Antena under test (antena yang performanya sedang diuji) utamanya adalah...", options: ["Antena Yagi-Uda 9 elemen", "Antena Dipole", "Antena Loop", "Antena Monopole"], answer: 0, explain: "Antena Yagi-Uda 9 elemen adalah antena yang sedang diuji pola dan gain-nya dengan cara membandingkannya terhadap antena referensi." },
+  
+  // GAIN & ELEMEN
+  { cat: "gain_elemen", q: "Apa itu gain antena?", options: ["Panjang fisik total antena", "Kemampuan antena memusatkan/memperkuat sinyal ke arah tertentu", "Kemampuan antena menahan daya pemancar besar", "Frekuensi resonansi antena"], answer: 1, explain: "Gain adalah penguatan antena, yaitu kemampuan antena untuk memusatkan energi radiasi sinyal ke satu arah tertentu dibandingkan antena referensi." },
+  { cat: "gain_elemen", q: "Pada Tabel 1 pengukuran gain, level E1 adalah...", options: ["Level saat menggunakan antena Yagi", "Level saat pemancar dimatikan", "Level sinyal saat penerima menggunakan antena dipole referensi", "Gain akhir antena"], answer: 2, explain: "E1 adalah level sinyal acuan yang diterima saat penerima menggunakan antena referensi (dipole setengah gelombang)." },
+  { cat: "gain_elemen", q: "Rumus perhitungan gain pada Percobaan 2 adalah...", options: ["G = E1 - E2", "G = E2 + E1", "G = E2 - E1 + 2,15 dB", "G = E2 / E1"], answer: 2, explain: "G = E2 - E1 adalah gain relatif terhadap dipole. Ditambah 2,15 dB agar nilainya menjadi gain absolut terhadap antena isotropis (dBi)." },
+  { cat: "gain_elemen", q: "Mengapa rumus perhitungan gain ditambah 2,15 dB?", options: ["Karena panjang kabel sekitar 2 meter", "Karena gain antena dipole referensi adalah 2,15 dB terhadap isotropis", "Itu adalah nilai error konstan alat ukur", "Karena menggunakan frekuensi 202 MHz"], answer: 1, explain: "Dipole setengah gelombang secara teori ideal memiliki gain 2,15 dBi (terhadap isotropis). Menambahkan 2,15 akan mengubah hasil E2-E1 menjadi dBi." },
+  { cat: "gain_elemen", q: "Jika E2 (Yagi) lebih besar dari E1 (Dipole), kesimpulannya adalah...", options: ["Antena Yagi rusak / tidak presisi", "Antena Yagi memiliki gain lebih kecil dari dipole", "Antena Yagi menerima sinyal lebih kuat ke arah tersebut, gain-nya lebih besar", "Kabel penghubung Yagi lebih pendek"], answer: 2, explain: "Level E2 yang lebih besar membuktikan bahwa Yagi memiliki penguatan (gain) yang lebih baik karena kemampuannya memusatkan arah pancaran/penerimaan." },
+  { cat: "gain_elemen", q: "Apa yang terjadi pada level sinyal ketika elemen-elemen Yagi dilepas satu per satu?", options: ["Level sinyal meningkat pesat", "Level sinyal menurun", "Level sinyal tetap stabil", "Sinyal menjadi nol absolut seketika"], answer: 1, explain: "Level sinyal menurun. Ini membuktikan eksperimental bahwa elemen-elemen pasif (reflector & director) pada Yagi sangat berperan penting meningkatkan penerimaan sinyal." },
+  { cat: "gain_elemen", q: "Fungsi reflector pada antena Yagi adalah...", options: ["Menghubungkan kabel koaksial", "Mengurangi radiasi ke belakang dan memantulkan energi ke depan", "Menerima sinyal dari semua arah (omni)", "Menyesuaikan impedansi input"], answer: 1, explain: "Reflector berada di posisi paling belakang. Fungsinya seperti cermin, menahan sinyal agar tidak bocor ke arah belakang dan memantulkannya ke arah depan." },
+  
+  // POLA RADIASI
+  { cat: "radiasi2", q: "Antena penerima dipasang pada rotator dan diputar dari 0° sampai 360° dengan step tiap...", options: ["5°", "10°", "15°", "45°"], answer: 1, explain: "Diputar tiap 10 derajat agar resolusi titik data cukup rapat untuk menggambarkan bentuk kurva pola radiasi yang detail di diagram polar." },
+  { cat: "radiasi2", q: "Bagaimana cara melakukan normalisasi data pola radiasi di tabel?", options: ["Semua nilai daya dibagi dua", "Nilai sudut dikurangi nilai minimum", "Setiap level sudut dikurangi dengan level maksimum (sehingga maks = 0 dB)", "Level sudut ditambah 10 dB"], answer: 2, explain: "Normalisasi mengubah nilai referensi. Puncak maksimum diubah jadi 0 dB, dan sudut lain dikurangi puncak tersebut sehingga nilainya menjadi negatif (misal -3 dB, -17 dB)." },
+  { cat: "radiasi2", q: "Berdasarkan Tabel 2, antena Yagi memiliki bentuk pola radiasi yang bersifat...", options: ["Omnidirectional", "Bidirectional", "Directional", "Isotropis"], answer: 2, explain: "Yagi sangat directional karena level maksimum ada tegak lurus di 0° (depan), sedangkan di 180° (belakang) levelnya ditekan turun sangat drastis (misal -17 dB)." },
+  { cat: "radiasi2", q: "Pada pengujian folded dipole, apa pengaruh penambahan reflektor?", options: ["Reflektor membuat pola lebih menyebar ke segala arah", "Reflektor membuat pola menjadi lebih terarah (directional)", "Reflektor menurunkan gain secara drastis", "Reflektor mengubah frekuensi kerja antena"], answer: 1, explain: "Tanpa reflektor, folded dipole menyebar ke segala arah secara relatif. Dengan reflektor, radiasi ke belakang ditahan sehingga pola memusat ke depan (directional)." },
+  { cat: "radiasi2", q: "Antena Isotropis adalah...", options: ["Antena Yagi yang sangat panjang", "Antena ideal teori yang memancar energi sama rata ke semua arah (bentuk bola)", "Antena dipole biasa", "Antena parabola tanpa kabel"], answer: 1, explain: "Isotropis hanya ada dalam konsep fisika teori. Antena ini memancar merata ke segala arah 3D. Digunakan sebagai acuan dasar (0 dBi) untuk standarisasi gain antena." },
+  { cat: "radiasi2", q: "Perbedaan mendasar antara satuan dBµV dan dBµV/m adalah...", options: ["Sama saja, hanya beda penulisan", "dBµV mengukur arus, dBµV/m mengukur tegangan", "dBµV adalah tegangan di alat penerima, dBµV/m adalah kuat medan listrik (field) di ruang", "dBµV/m dipakai untuk mengukur jarak"], answer: 2, explain: "dBµV murni mengukur level tegangan listrik yang masuk ke receiver via kabel. dBµV/m adalah field strength (kuat medan listrik gelombang) aktual di udara bebas." },
+
+  // PARAMETER & CROSS ISOLATION
+  { cat: "parameter2", q: "Apa yang dimaksud dengan parameter HPBW (Half Power Beam Width)?", options: ["Jarak maksimum pancaran gelombang", "Lebar sudut main lobe pada titik saat daya turun setengahnya (-3 dB)", "Perbandingan daya depan dan daya belakang", "Lebar bandwidth frekuensi kerja"], answer: 1, explain: "HPBW mengukur seberapa sempit 'sorotan' beam antena. Diukur dari selisih sudut kiri dan kanan main lobe saat level sinyalnya turun 3 dB dari puncak maksimum." },
+  { cat: "parameter2", q: "Jika nilai HPBW sebuah antena semakin kecil, hal ini berarti...", options: ["Antena semakin omnidirectional (menyebar)", "Antena semakin terarah / sorotan beam makin sempit", "Gain antena pasti memburuk", "Elemen antena rusak"], answer: 1, explain: "HPBW kecil berarti energi sangat terpusat di sudut (beam) yang sangat sempit, layaknya lampu sorot tajam. Ini menandakan antena sangat directional." },
+  { cat: "parameter2", q: "Front-to-Back Ratio (FBR) merupakan perbandingan antara...", options: ["Lebar fisik dan panjang fisik antena", "Level sinyal arah depan (0°) dengan arah belakang (180°)", "Level pancaran maksimum dengan minimum di seluruh sudut", "Daya input dari generator dan daya output"], answer: 1, explain: "FBR mengukur kemampuan antena memfokuskan pancaran ke depan sekaligus menolak bocoran sinyal ke belakang. FBR = Level 0° - Level 180° (dalam data normalisasi)." },
+  { cat: "parameter2", q: "Apa itu Sidelobe Attenuation?", options: ["Peredaman sinyal oleh kabel rusak", "Selisih level antara puncak main lobe dan puncak side lobe (pancaran samping)", "Peredaman gelombang oleh ruang bebas di udara", "Lebar sudut beam keseluruhan"], answer: 1, explain: "Sidelobe attenuation menunjukkan seberapa baik antena menekan pancaran liar ke arah samping. Semakin besar nilai peredamannya, makin bersih fokus pola antenanya." },
+  { cat: "parameter2", q: "Dalam konteks Percobaan 2, Isolasi Silang (Cross Isolation) adalah...", options: ["Kondisi kabel yang bersilangan pendek", "Perbedaan level penerimaan antara polarisasi utama dengan polarisasi silangnya (H vs V)", "Jarak fisik antara pemancar dan penerima", "Gangguan interferensi dari stasiun radio lain"], answer: 1, explain: "Isolasi silang mengukur seberapa bagus antena menolak sinyal yang polarisasinya berbeda. Jika antena Horizontal menerima sinyal Vertikal, level yang diterima harusnya sangat kecil." },
+  { cat: "parameter2", q: "Rumus matematis perhitungan Cross Isolation di jobsheet adalah...", options: ["EcI = E1 + E2", "EcI = E1 / E2", "EcI = E1 - E2", "EcI = E1 x E2"], answer: 2, explain: "EcI (Cross Isolation) = E1 - E2. Di mana E1 adalah level saat polarisasi selaras (utama) dan E2 adalah level saat polarisasi tidak selaras (silang). Satuannya dalam dB." },
+  { cat: "parameter2", q: "Mengapa pola radiasi hasil praktikum tidak pernah 100% ideal sempurna seperti di buku teori?", options: ["Karena rumus teori fisika belum dikalibrasi", "Ada pantulan dinding ruangan, gangguan logam, rotator kurang presisi, dan toleransi alat", "Karena frekuensi 202 MHz sudah usang", "Disengaja oleh asisten lab"], answer: 1, explain: "Dunia nyata penuh kondisi non-ideal (noise). Gelombang RF bisa memantul di tembok/meja lab (multipath), rotator mungkin meleset 1-2 derajat, dan alat ukur analog punya batas toleransi akurasi." }
+];
+
 /* ---------- PLACEHOLDER untuk modul yang belum diisi ---------- */
 function placeholderMateri(namaModul) {
   return [{
@@ -972,13 +1128,13 @@ const MODULES = [
   },
   {
     id: "percobaan2",
-    title: "Percobaan 2",
-    subtitle: "Konten menyusul",
+    title: "Percobaan 2: Gain & Pola",
+    subtitle: "Yagi, Folded Dipole, HPBW, Isolasi Silang • VHF 202 MHz",
     icon: "🧪",
     theme: "blue",
-    ready: false,
-    materi: placeholderMateri("Percobaan 2"),
-    quiz: []
+    ready: true,
+    materi: MATERI_PERCOBAAN2,
+    quiz: QUIZ_PERCOBAAN2
   }
 ];
 
@@ -996,5 +1152,9 @@ const CATEGORIES = {
   polar_dasar: "Dasar Diagram Polar",
   pola_radiasi: "Pola Radiasi & Data",
   definisi_polar: "Definisi Diagram Polar",
-  penguasaan_polar: "Penguasaan & Analisis"
+  penguasaan_polar: "Penguasaan & Analisis",
+  dasar2: "Dasar Percobaan 2",
+  gain_elemen: "Gain & Elemen Yagi",
+  radiasi2: "Pola Radiasi (P2)",
+  parameter2: "Parameter & Isolasi Silang"
 };
