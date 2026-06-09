@@ -1079,6 +1079,109 @@ const QUIZ_PERCOBAAN2 = [
   { cat: "parameter2", q: "Mengapa pola radiasi hasil praktikum tidak pernah 100% ideal sempurna seperti di buku teori?", options: ["Karena rumus teori fisika belum dikalibrasi", "Ada pantulan dinding ruangan, gangguan logam, rotator kurang presisi, dan toleransi alat", "Karena frekuensi 202 MHz sudah usang", "Disengaja oleh asisten lab"], answer: 1, explain: "Dunia nyata penuh kondisi non-ideal (noise). Gelombang RF bisa memantul di tembok/meja lab (multipath), rotator mungkin meleset 1-2 derajat, dan alat ukur analog punya batas toleransi akurasi." }
 ];
 
+/* ---------- MATERI PARAMETER & TEORI DASAR ---------- */
+const MATERI_PARAMETER = [
+  {
+    id: "param-pengantar",
+    title: "15 Parameter Antena",
+    html: `
+      <p>Parameter antena adalah ukuran-ukuran yang dipakai untuk menilai karakter atau performa antena. Kalau ditanya “parameter antena apa saja?”, sebutkan yang utama:</p>
+      <p class="quote">“Parameter antena antara lain gain, directivity, pola radiasi, polarisasi, impedansi input, matching, SWR/VSWR, faktor refleksi, bandwidth, efisiensi, HPBW, front-to-back ratio, sidelobe, sidelobe attenuation, dan cross isolation.”</p>
+    `
+  },
+  {
+    id: "param-1-3",
+    title: "1. Gain, 2. Directivity, 3. Pola Radiasi",
+    html: `
+      <div class="qa"><div class="q">1. Gain</div><div class="a">Kemampuan antena memusatkan energi ke arah tertentu dibanding antena acuan. Gain menunjukkan seberapa kuat antena memancarkan/menerima sinyal ke arah utama. Satuan: <code>dBi</code> atau <code>dBd</code>.</div></div>
+      <div class="qa"><div class="q">Beda Gain Antena vs Gain Elektronik</div><div class="a"><strong>Gain antena</strong> tidak "membuat daya baru", melainkan hanya mengarahkan energi yang ada agar lebih fokus. <strong>Gain elektronik</strong> (seperti amplifier) benar-benar memperbesar daya sinyal karena dibantu catu daya luar.</div></div>
+      <div class="qa"><div class="q">2. Directivity</div><div class="a">Kemampuan antena mengarahkan pancaran/penerimaan. Bedanya dengan gain: Directivity murni fokus ke pengarahan, sedangkan Gain adalah directivity yang sudah dipotong rugi-rugi (efisiensi).</div></div>
+      <div class="qa"><div class="q">3. Pola Radiasi</div><div class="a">Gambaran kuat sinyal antena terhadap sudut arah. Jenisnya: Directional (fokus 1 arah), Bidirectional (2 arah), Omnidirectional (menyebar rata).</div></div>
+    `
+  },
+  {
+    id: "param-4-6",
+    title: "4. Polarisasi, 5. Impedansi, 6. Matching",
+    html: `
+      <div class="qa"><div class="q">4. Polarisasi</div><div class="a">Arah ayunan medan listrik gelombang elektromagnetik. Contoh: Horizontal atau Vertikal. Sinyal maksimal jika pemancar & penerima punya polarisasi sama (co-polarisasi).</div></div>
+      <div class="qa"><div class="q">5. Impedansi Input</div><div class="a">Impedansi antena dilihat dari titik catu/kabel. Sistem RF standar biasanya menggunakan <code>50 ohm</code>. Perlu cocok dengan kabel dan pemancar.</div></div>
+      <div class="qa"><div class="q">6. Matching</div><div class="a">Kondisi saat impedansi antena cocok dengan saluran/kabel. Jika matching baik: daya banyak terpancar & pantulan kecil. Jika buruk: daya memantul balik ke pemancar.</div></div>
+    `
+  },
+  {
+    id: "param-7-10",
+    title: "7. SWR, 8. Faktor Refleksi, 9. Bandwidth, 10. Efisiensi",
+    html: `
+      <div class="qa"><div class="q">7. SWR / VSWR</div><div class="a">Ukuran kecocokan antena dengan saluran akibat adanya gelombang berdiri dari pantulan. Nilai ideal adalah <code>1</code>. Semakin dekat ke 1, semakin bagus.</div></div>
+      <div class="qa"><div class="q">8. Faktor Refleksi (r)</div><div class="a">Perbandingan tegangan yang terpantul balik dengan tegangan maju. Menunjukkan seberapa besar sinyal yang gagal disalurkan.</div></div>
+      <div class="qa"><div class="q">9. Bandwidth</div><div class="a">Rentang frekuensi di mana antena masih bekerja dengan baik (matching/SWR dapat diterima). Contoh: Yagi praktikum bekerja di 174-230 MHz.</div></div>
+      <div class="qa"><div class="q">10. Efisiensi</div><div class="a">Perbandingan daya yang benar-benar diradiasikan ke udara dengan daya total yang masuk ke antena. Sisanya hilang sebagai panas/rugi-rugi.</div></div>
+    `
+  },
+  {
+    id: "param-11-15",
+    title: "11 - 15. Parameter Pola Radiasi",
+    html: `
+      <div class="qa"><div class="q">11. HPBW (Half Power Beam Width)</div><div class="a">Lebar sudut pancaran utama pada titik turun <code>-3 dB</code> (setengah daya). Makin kecil HPBW, beam makin sempit (terarah).</div></div>
+      <div class="qa"><div class="q">12. Front-to-Back Ratio (FBR)</div><div class="a">Perbandingan sinyal arah depan vs belakang. Makin besar FBR, antena makin kuat menekan bocoran sinyal dari belakang.</div></div>
+      <div class="qa"><div class="q">13. Sidelobe</div><div class="a">Pancaran samping selain main lobe. Biasanya merugikan karena menyebabkan interferensi.</div></div>
+      <div class="qa"><div class="q">14. Sidelobe Attenuation</div><div class="a">Selisih level main lobe dengan side lobe terbesar. Makin besar nilainya, makin kecil gangguan dari samping.</div></div>
+      <div class="qa"><div class="q">15. Cross Isolation</div><div class="a">Kemampuan antena menolak sinyal dengan polarisasi silang. Makin besar nilainya, makin selektif terhadap polarisasi utama.</div></div>
+    `
+  },
+  {
+    id: "vhf-vs-uhf",
+    title: "Perbedaan VHF dan UHF",
+    html: `
+      <p>Praktikum Antena ini menggunakan dua pita frekuensi berbeda:</p>
+      <ul>
+        <li><strong>VHF (Very High Frequency):</strong> <code>30 MHz - 300 MHz</code>. Digunakan di <strong>Percobaan 2 (202 MHz)</strong>.</li>
+        <li><strong>UHF (Ultra High Frequency):</strong> <code>300 MHz - 3 GHz</code>. Digunakan di <strong>Percobaan 1 & Diagram Polar (434 MHz)</strong>.</li>
+      </ul>
+      <table class="tbl">
+        <thead><tr><th>Karakteristik</th><th>VHF</th><th>UHF</th></tr></thead>
+        <tbody>
+          <tr><td>Frekuensi</td><td>Lebih rendah</td><td>Lebih tinggi</td></tr>
+          <tr><td>Panjang Gelombang (λ)</td><td>Lebih panjang (contoh: 1,48 m)</td><td>Lebih pendek (contoh: 0,69 m)</td></tr>
+          <tr><td>Ukuran Antena Fisik</td><td>Lebih besar / panjang</td><td>Lebih kecil / pendek</td></tr>
+          <tr><td>Karakter Rambatan</td><td>Lebih tahan halangan (tembus/belok)</td><td>Sensitif halangan, cenderung Line-of-Sight</td></tr>
+          <tr><td>Contoh Penggunaan</td><td>Radio FM, HT VHF, Komunikasi Pesawat</td><td>TV UHF, Wi-Fi 2.4 GHz, Komunikasi Seluler</td></tr>
+        </tbody>
+      </table>
+    `
+  },
+  {
+    id: "jawaban-aman-param",
+    title: "Jawaban Lisan Ringkas & Aman",
+    html: `
+      <p class="quote">"Parameter antena yang paling penting adalah gain, pola radiasi, polarisasi, impedansi, SWR, bandwidth, HPBW, front-to-back ratio, dan sidelobe. Di praktikum kami yang paling terlihat adalah gain, pola radiasi, polarisasi, SWR, HPBW, dan front-to-back ratio."</p>
+      <h3>Jika ditanya soal Gain vs Elektronik:</h3>
+      <p class="quote">"Gain antena berasal dari pengarahan/pemfokusan energi, sedangkan gain elektronik berasal dari rangkaian aktif seperti amplifier yang benar-benar memperbesar daya sinyal dengan bantuan catu daya."</p>
+      <h3>Jika ditanya soal VHF vs UHF:</h3>
+      <p class="quote">"VHF berada pada 30 sampai 300 MHz, sedangkan UHF 300 MHz sampai 3 GHz. Karena frekuensi VHF lebih rendah, panjang gelombangnya lebih besar sehingga ukuran antenanya lebih panjang dibanding UHF. Di praktikum, Percobaan 1 memakai UHF 434 MHz, sedangkan Percobaan 2 memakai VHF 202 MHz."</p>
+    `
+  }
+];
+
+/* ---------- QUIZ PARAMETER ANTENA & TEORI ---------- */
+const QUIZ_PARAMETER = [
+  // PARAMETER DASAR
+  { cat: "param_dasar", q: "Apa yang membedakan Gain Antena dengan Gain Elektronik (Amplifier)?", options: ["Tidak ada bedanya", "Gain antena menambah daya listrik dari udara, gain elektronik tidak", "Gain antena hanya mengarahkan energi yang ada, sedangkan gain elektronik benar-benar memperbesar daya memakai sumber listrik tambahan", "Gain antena selalu bernilai negatif"], answer: 2, explain: "Antena itu benda pasif. Dia tidak bisa 'menciptakan' daya. Gain antena didapat dari memfokuskan energi ke arah tertentu. Sedangkan amplifier memperbesar sinyal memakai daya dari catu daya (listrik)." },
+  { cat: "param_dasar", q: "Apa bedanya Gain dengan Directivity?", options: ["Gain hanya untuk antena parabola", "Directivity murni nilai pengarahan teoritis, sedangkan Gain adalah directivity yang sudah dipotong rugi-rugi (efisiensi antena)", "Directivity diukur dalam Volt, Gain diukur dalam Watt", "Sama persis definisinya"], answer: 1, explain: "Directivity hanya melihat seberapa fokus polanya. Tapi di dunia nyata, antena punya rugi-rugi (misal panas). Gain memperhitungkan pengarahan sekaligus efisiensi/rugi-rugi tersebut." },
+  { cat: "param_dasar", q: "Standar impedansi input antena untuk sistem RF pada umumnya adalah...", options: ["8 ohm", "50 ohm", "220 volt", "1000 ohm"], answer: 1, explain: "Sebagian besar sistem komunikasi RF komersial dan praktikum didesain dengan impedansi karakteristik 50 ohm." },
+  { cat: "param_dasar", q: "Apa yang terjadi jika impedansi antena tidak MATCHING dengan saluran?", options: ["Sinyal menjadi lebih cepat merambat", "Antena akan meledak", "Sebagian daya akan memantul balik ke pemancar, sehingga SWR meningkat", "Pola radiasi berubah menjadi kotak"], answer: 2, explain: "Ketidakcocokan (mismatch) impedansi menyebabkan gelombang pantul. Akibatnya daya tidak tersalur maksimal ke udara dan SWR/VSWR menjadi tinggi." },
+  { cat: "param_dasar", q: "Apa itu Bandwidth pada antena?", options: ["Kecepatan internet maksimal", "Rentang frekuensi di mana antena masih bisa bekerja dengan baik (SWR rendah)", "Jangkauan jarak pancar antena", "Tebal kabel antena"], answer: 1, explain: "Bandwidth adalah rentang frekuensi kerja. Misalnya antena Yagi didesain khusus untuk rentang 174-230 MHz. Di luar rentang itu, SWR-nya akan naik drastis karena antena tidak lagi resonan." },
+  { cat: "param_dasar", q: "Apa fungsi dari parameter Front-to-Back Ratio (FBR)?", options: ["Mengukur panjang antena", "Mengukur perbandingan kuat sinyal arah depan dengan arah belakang untuk mengetahui kemampuan menolak interferensi belakang", "Menghitung jumlah elemen Yagi", "Mengukur efisiensi kabel"], answer: 1, explain: "FBR berguna untuk mengetahui seberapa baik antena tersebut 'tuli' terhadap sinyal dari arah belakang. Ini sangat penting untuk antena directional agar tidak menangkap noise dari belakang." },
+  { cat: "param_dasar", q: "Apa yang dimaksud dengan Sidelobe Attenuation?", options: ["Peredaman sinyal kabel", "Selisih level antara puncak main lobe dengan puncak side lobe terbesar", "Kerusakan pada elemen antena", "Lebar pancaran utama"], answer: 1, explain: "Sidelobe adalah 'bocoran' pancaran ke samping. Attenuation mengukur seberapa jauh level sidelobe tersebut berhasil diredam jika dibandingkan dengan main lobe." },
+
+  // VHF VS UHF
+  { cat: "param_vhfuhf", q: "Rentang frekuensi VHF (Very High Frequency) adalah...", options: ["3 - 30 MHz", "30 - 300 MHz", "300 MHz - 3 GHz", "3 - 30 GHz"], answer: 1, explain: "VHF berada pada rentang 30 MHz hingga 300 MHz. Di praktikum, Percobaan 2 menggunakan frekuensi 202 MHz yang masuk pita VHF ini." },
+  { cat: "param_vhfuhf", q: "Rentang frekuensi UHF (Ultra High Frequency) adalah...", options: ["3 - 30 MHz", "30 - 300 MHz", "300 MHz - 3 GHz", "3 - 30 GHz"], answer: 2, explain: "UHF berada pada rentang 300 MHz hingga 3 GHz (3000 MHz). Praktikum Percobaan 1 memakai 434 MHz yang masuk pita UHF." },
+  { cat: "param_vhfuhf", q: "Hubungan antara frekuensi dan panjang gelombang (λ) adalah...", options: ["Semakin tinggi frekuensi, semakin panjang gelombangnya", "Berbanding terbalik: semakin tinggi frekuensi, semakin pendek gelombangnya", "Frekuensi tidak mempengaruhi panjang gelombang", "Keduanya selalu bernilai sama"], answer: 1, explain: "Rumus gelombang adalah λ = c/f. Karena frekuensi (f) bertindak sebagai pembagi, maka semakin besar frekuensi, otomatis panjang gelombangnya akan makin pendek." },
+  { cat: "param_vhfuhf", q: "Berdasarkan prinsip panjang gelombang, perbandingan ukuran antena VHF dan UHF adalah...", options: ["Antena VHF ukurannya lebih pendek dari UHF", "Antena VHF ukurannya lebih besar/panjang daripada antena UHF", "Ukurannya pasti sama persis", "Tergantung warna cat antenanya"], answer: 1, explain: "Karena frekuensi VHF lebih rendah, panjang gelombangnya lebih besar. Oleh karena itu, ukuran fisik antena VHF harus lebih besar/panjang dibanding antena UHF agar bisa beresonansi." },
+  { cat: "param_vhfuhf", q: "Mana dari pilihan berikut yang merupakan contoh aplikasi frekuensi UHF?", options: ["Radio FM (88-108 MHz)", "Komunikasi Penerbangan Pesawat", "Wi-Fi, Bluetooth, dan Praktikum 434 MHz", "Radio AM"], answer: 2, explain: "Radio FM dan komunikasi pesawat masuk pita VHF. Wi-Fi (2.4 GHz), Bluetooth, dan pemancar praktikum 434 MHz masuk pita UHF." }
+];
+
 /* ---------- PLACEHOLDER untuk modul yang belum diisi ---------- */
 function placeholderMateri(namaModul) {
   return [{
@@ -1135,6 +1238,16 @@ const MODULES = [
     ready: true,
     materi: MATERI_PERCOBAAN2,
     quiz: QUIZ_PERCOBAAN2
+  },
+  {
+    id: "parameter-teori",
+    title: "Parameter & Teori Dasar",
+    subtitle: "15 Parameter Antena, VHF vs UHF, Gain vs Elektronik",
+    icon: "📖",
+    theme: "purple",
+    ready: true,
+    materi: MATERI_PARAMETER,
+    quiz: QUIZ_PARAMETER
   }
 ];
 
@@ -1156,5 +1269,7 @@ const CATEGORIES = {
   dasar2: "Dasar Percobaan 2",
   gain_elemen: "Gain & Elemen Yagi",
   radiasi2: "Pola Radiasi (P2)",
-  parameter2: "Parameter & Isolasi Silang"
+  parameter2: "Parameter & Isolasi Silang",
+  param_dasar: "Konsep Parameter Antena",
+  param_vhfuhf: "VHF vs UHF"
 };
